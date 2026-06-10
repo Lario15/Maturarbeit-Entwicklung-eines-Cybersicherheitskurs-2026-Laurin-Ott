@@ -1,3 +1,3 @@
 # Arbeitsjournal
-| Datum | Zeit invetiert| Was |
+| Datum | Zeit investiert| Was |
 |-------|---------------|-----|
