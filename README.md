@@ -25,10 +25,6 @@ Maturitätsarbeit/
 └── Präsentation/          # Folien und Materialien für die Abschlusspräsentation
 ```
 
-## Voraussetzungen
-- Python 3.x (für Code-Beispiele)
-- Textverarbeitungsprogramm (für Dokumentation)
-
 ## Status
 🟡 In Bearbeitung
 
