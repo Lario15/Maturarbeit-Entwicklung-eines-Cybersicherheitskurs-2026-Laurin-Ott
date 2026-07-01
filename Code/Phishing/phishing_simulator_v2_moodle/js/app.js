@@ -63,6 +63,7 @@ function wireBodyLinks(){
   var e = currentEmail();
   links.forEach(function(l){
     // Hoverbares Ziel anzeigen:
+    // NEU: Zeigt die Ziel-URL beim Darüberfahren (Hover) an
     if(e.linkUrl) {
       l.title = "Ziel-URL: " + e.linkUrl;
     } else {
@@ -77,11 +78,11 @@ function wireBodyLinks(){
 }
 
 function renderActionBar(){
-  var bar = $('action-bar');
+  var bar = document.getElementById('action-bar');
   if(S.phase === 'reading'){
     bar.innerHTML = 
-      '<button style="background: #10b981; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; margin-right: 10px; font-weight: bold;" onclick="judge(\'legit\')">✅ Legitim</button>'+
-      '<button style="background: #ef4444; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="askForReason()">🚨 Verdächtig</button>'; 
+      '<button class="btn btn-legit" onclick="judge(\'legit\')">✅ Legitim (Keine Gefahr)</button>'+
+      '<button class="btn btn-phish" onclick="askForReason()">🚨 Verdächtig / Phishing</button>'; 
   } else {
     bar.innerHTML = '';
   }
@@ -207,4 +208,20 @@ function showResults(){
   if (typeof SCORM !== 'undefined' && SCORM.finish) {
     SCORM.finish(pct, pct >= 60);
   }
+}
+function askForReason() {
+  document.getElementById('reason-screen').style.display = 'block';
+  document.getElementById('reason-select').value = ""; // Dropdown zurücksetzen
+}
+
+function submitReason() {
+  var reason = document.getElementById('reason-select').value;
+  if (!reason) {
+    alert("Bitte wählen Sie einen Grund aus.");
+    return;
+  }
+  document.getElementById('reason-screen').style.display = 'none';
+  
+  // Danach die Original-Bewertung aufrufen
+  judge('phishing', reason);
 }

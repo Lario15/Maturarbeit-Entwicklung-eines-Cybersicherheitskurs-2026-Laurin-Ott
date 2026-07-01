@@ -109,5 +109,18 @@
 <script src="js/scorm.js"></script>
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
+<div id="reason-screen" style="display: none; background: rgba(0,0,0,0.5); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; padding-top: 100px;">
+  <div style="background: #fff; max-width: 500px; margin: 0 auto; padding: 30px; border-radius: 12px;">
+    <h2>Warum ist diese E-Mail verdächtig?</h2>
+    <select id="reason-select" style="width: 100%; padding: 10px; margin-bottom: 20px;">
+      <option value="">-- Bitte wählen --</option>
+      <option value="domain">Falsche Absender-Domain</option>
+      <option value="link">Gefälschter Link</option>
+      <option value="druck">Künstlicher Zeitdruck</option>
+    </select>
+    <button onclick="document.getElementById('reason-screen').style.display='none'">Abbrechen</button>
+    <button onclick="submitReason()">Bestätigen</button>
+  </div>
+</div>
 </body>
 </html>
