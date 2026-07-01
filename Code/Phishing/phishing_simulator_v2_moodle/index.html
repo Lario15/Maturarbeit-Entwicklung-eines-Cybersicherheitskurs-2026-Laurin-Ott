@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phishing-Mail Simulator</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* Zusätzliche Styles für das Begründungs-Modal */
+  #reason-screen { display: none; background: rgba(0,0,0,0.5); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; padding-top: 100px; }
+  .modal-box { background: #fff; max-width: 500px; margin: 0 auto; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+  .modal-box h2 { color: #1a3a6b; margin-bottom: 15px; }
+  .modal-box p { margin-bottom: 20px; color: #444; }
+  .modal-box select { width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 6px; border: 1px solid #ccc; font-size: 14px; }
+  .modal-btn-wrap { text-align: right; }
+  .modal-btn-wrap button { margin-left: 10px; padding: 8px 16px; cursor: pointer; border-radius: 6px; border: none; font-weight: bold; }
+  .btn-cancel { background: #e5e7eb; color: #374151; }
+  .btn-confirm { background: #1a3a6b; color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="app-bar">
+  <span class="app-icon">🎣</span>
+  <h1>Phishing-Mail Simulator</h1>
+</div>
+<div class="progress-strip">
+  <span id="progress-label">0 von 8 E-Mails beurteilt</span>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+</div>
+
+<div class="screen" id="start-screen">
+  <div class="start-card">
+    <div class="hero">📧</div>
+    <h2>Erkennen Sie Phishing-Mails?</h2>
+    <p>Sie erhalten <strong>8 realistische E-Mails</strong>. Manche sind täuschend echt gefälscht, andere legitim. Ihre Aufgabe: entscheiden Sie für jede Mail.</p>
+    <div class="info-row">
+      <div class="info-tile"><div class="n">8</div><div class="l">E-Mails</div></div>
+      <div class="info-tile"><div class="n">24</div><div class="l">Max. Punkte</div></div>
+      <div class="info-tile"><div class="n">💡</div><div class="l">Tipps</div></div>
+    </div>
+    <button class="btn btn-start" onclick="startSim()">Simulation starten</button>
+  </div>
+</div>
+
+<div class="screen" id="email-screen">
+  <div class="email-header">
+    <div class="email-meta">
+      <div class="diff-badge" id="diff-badge"></div>
+      <div class="email-counter" id="email-counter"></div>
+    </div>
+    <div class="email-subject" id="email-subject"></div>
+    <div class="email-sender">
+      <strong>Von:</strong> <span id="sender-display" class="sender-name"></span>
+      <span class="sender-real" id="sender-real"></span>
+    </div>
+    <div class="email-to"><strong>An:</strong> <span id="email-to"></span></div>
+    <div class="email-date" id="email-date"></div>
+  </div>
+  
+  <div class="email-body-container">
+    <div class="email-body" id="email-body"></div>
+  </div>
+
+  <div class="action-bar" id="action-bar">
+    </div>
+  
+  <div id="feedback-area" style="display:none; padding: 15px; margin: 15px; border-radius: 8px; font-weight: bold;"></div>
+  <button id="btn-next" style="display:none; margin: 15px auto; padding: 10px 20px; font-weight: bold; cursor: pointer;" onclick="nextEmail()">Nächste E-Mail ➡️</button>
+</div>
+
+<div id="reason-screen">
+  <div class="modal-box">
+    <h2>Warum ist diese E-Mail verdächtig?</h2>
+    <p>Bitte wählen Sie den zutreffendsten Grund aus:</p>
+    <select id="reason-select">
+      <option value="">-- Bitte wählen --</option>
+      <option value="domain">Falsche Absender-Domain (z.B. Tippfehler)</option>
+      <option value="link">Gefälschter Link (Ziel-URL weicht ab)</option>
+      <option value="druck">Künstlicher Zeitdruck / Drohung</option>
+      <option value="unbekannt">Unbekannter Absender fragt nach Daten</option>
+    </select>
+    <div class="modal-btn-wrap">
+      <button class="btn-cancel" onclick="cancelReason()">Abbrechen</button>
+      <button class="btn-confirm" onclick="submitReason()">Bestätigen</button>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="results-screen">
+  <div class="res-card">
+    <h2>Simulation abgeschlossen! 🎉</h2>
+    <div class="res-score-wrap">
+      <div class="score-main"><span id="res-score"></span> <small>Punkte</small></div>
+      <div class="score-sub"><span id="res-pct">0%</span> Gesamtpunktzahl</div>
+    </div>
+    <div class="res-stats">
+      <div class="stat-tile">
+        <div class="stat-n"><span id="res-correct">0</span> / <span id="res-total">8</span></div>
+        <div class="stat-l">Richtige Antworten</div>
+      </div>
+    </div>
+    <div class="res-rating" id="res-rating"></div>
+    <div class="res-det-title">Detailübersicht:</div>
+    <div id="res-details"></div>
+  </div>
+</div>
+
+<script src="js/scorm.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
