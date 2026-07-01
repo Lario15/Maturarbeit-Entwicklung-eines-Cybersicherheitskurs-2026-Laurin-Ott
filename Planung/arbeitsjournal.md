@@ -1,5 +1,7 @@
 # Arbeitsjournal
 
+> 📌 **Mein Projektplan:** [Hier geht es zu meinem GitHub Kanban-Board](https://github.com/users/Lario15/projects/1/views/1)
+
 | Datum | Was |
 |-------|-----|
 | Mai 2026 | Maturaarbeit Guidelines gelesen (siehe [#1](https://github.com/Lario15/Maturarbeit-Entwicklung-eines-Cybersicherheitskurs-2026-Laurin-Ott/issues/1)). |
