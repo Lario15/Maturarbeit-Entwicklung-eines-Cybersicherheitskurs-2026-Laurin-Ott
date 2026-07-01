@@ -21,7 +21,6 @@ Maturitätsarbeit/
 ├── Dokumente/             # Offizielle Dokumente (Anmeldung, Vereinbarungen etc.)
 ├── Literatur/             # Quellen, Fachartikel und Bücher
 ├── Planung/
-│   └── Monatsplan/        # Monatliche Zeitpläne und Meilensteine
 └── Präsentation/          # Folien und Materialien für die Abschlusspräsentation
 ```
 
