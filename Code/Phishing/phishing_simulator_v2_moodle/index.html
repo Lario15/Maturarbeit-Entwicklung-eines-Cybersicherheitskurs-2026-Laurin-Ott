@@ -5,30 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Phishing-Mail Simulator</title>
 <link rel="stylesheet" href="css/style.css">
-<style>
-  /* Zusätzliche Styles für das Begründungs-Modal */
-  #reason-screen { display: none; background: rgba(0,0,0,0.5); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; padding-top: 100px; }
-  .modal-box { background: #fff; max-width: 500px; margin: 0 auto; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-  .modal-box h2 { color: #1a3a6b; margin-bottom: 15px; }
-  .modal-box p { margin-bottom: 20px; color: #444; }
-  .modal-box select { width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 6px; border: 1px solid #ccc; font-size: 14px; }
-  .modal-btn-wrap { text-align: right; }
-  .modal-btn-wrap button { margin-left: 10px; padding: 8px 16px; cursor: pointer; border-radius: 6px; border: none; font-weight: bold; }
-  .btn-cancel { background: #e5e7eb; color: #374151; }
-  .btn-confirm { background: #1a3a6b; color: #fff; }
-</style>
 </head>
 <body>
 
 <div class="app-bar">
   <span class="app-icon">🎣</span>
-  <h1>Phishing-Mail Simulator</h1>
+  <h1>Phishing-Mail Simulator – Kantonsschule Im Lee</h1>
 </div>
 <div class="progress-strip">
   <span id="progress-label">0 von 8 E-Mails beurteilt</span>
   <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
 </div>
 
+<!-- ═══════════════════════════════════════
+     START SCREEN
+═══════════════════════════════════════ -->
 <div class="screen" id="start-screen">
   <div class="start-card">
     <div class="hero">📧</div>
@@ -37,61 +28,124 @@
     <div class="info-row">
       <div class="info-tile"><div class="n">8</div><div class="l">E-Mails</div></div>
       <div class="info-tile"><div class="n">24</div><div class="l">Max. Punkte</div></div>
-      <div class="info-tile"><div class="n">💡</div><div class="l">Tipps</div></div>
+      <div class="info-tile"><div class="n">💡</div><div class="l">Hinweise</div></div>
     </div>
-    <button class="btn btn-start" onclick="startSim()">Simulation starten</button>
+    <div class="tip-box">
+      <strong>🏆 Punkte-System:</strong>
+      Richtige Antwort ohne Hinweise: <strong>3 Punkte</strong> · Mit 1 Hinweis: <strong>2 Punkte</strong> · Mit mehreren: <strong>1 Punkt</strong> · Falsch: <strong>0 Punkte</strong>.<br>
+      <strong>Tipp:</strong> Hovern Sie über den <u>fett gedruckten Absendernamen</u>, um die echte E-Mail-Adresse zu sehen!
+    </div>
+    <button class="btn btn-start" onclick="startSim()">Simulation starten →</button>
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════
+     EMAIL SCREEN
+═══════════════════════════════════════ -->
 <div class="screen" id="email-screen">
-  <div class="email-header">
-    <div class="email-meta">
-      <div class="diff-badge" id="diff-badge"></div>
-      <div class="email-counter" id="email-counter"></div>
-    </div>
-    <div class="email-subject" id="email-subject"></div>
-    <div class="email-sender">
-      <strong>Von:</strong> <span id="sender-display" class="sender-name"></span>
-      <span class="sender-real" id="sender-real"></span>
-    </div>
-    <div class="email-to"><strong>An:</strong> <span id="email-to"></span></div>
-    <div class="email-date" id="email-date"></div>
-  </div>
-  
-  <div class="email-body-container">
-    <div class="email-body" id="email-body"></div>
-  </div>
+  <div class="mail-window">
 
-  <div class="action-bar" id="action-bar">
+    <!-- Top bar -->
+    <div class="mail-topbar">
+      <span>📥 Posteingang</span>
+      <span id="diff-badge" class="diff-badge diff-schwer">Schwierigkeit: schwer</span>
+      <span class="mail-counter" id="email-counter">1 / 8</span>
     </div>
-  
-  <div id="feedback-area" style="display:none; padding: 15px; margin: 15px; border-radius: 8px; font-weight: bold;"></div>
-  <button id="btn-next" style="display:none; margin: 15px auto; padding: 10px 20px; font-weight: bold; cursor: pointer;" onclick="nextEmail()">Nächste E-Mail ➡️</button>
+
+    <!-- Mail header -->
+    <div class="mail-header">
+      <div class="mh-row">
+        <span class="mh-label">Von</span>
+        <span id="email-sender-cell">
+          <span class="sender-name" id="sender-hover-target">Absender</span>
+          <small class="hover-hint">☝ Hover für echte Adresse</small>
+        </span>
+      </div>
+      <div class="mh-row">
+        <span class="mh-label">An</span>
+        <span id="email-to-display"></span>
+      </div>
+      <div class="mh-row">
+        <span class="mh-label">Datum</span>
+        <span id="email-date-display"></span>
+      </div>
+      <div class="mail-subject" id="email-subject-display"></div>
+    </div>
+
+    <!-- Mail body -->
+    <div class="mail-body" id="email-body-area"></div>
+
+    <!-- Thread snippet -->
+    <div class="thread-snippet" id="thread-snippet" style="display:none"></div>
+
+    <!-- Action section -->
+    <div class="action-section">
+      <div class="action-question">Wie beurteilen Sie diese E-Mail?</div>
+      <div id="feedback-box" class="feedback-box" style="display:none"></div>
+      <div class="action-bar" id="action-bar"></div>
+      <div class="next-wrap">
+        <button class="btn btn-next" id="next-btn" onclick="nextEmail()" style="display:none">Nächste Mail →</button>
+      </div>
+    </div>
+
+    <!-- Hints section -->
+    <div class="hints-section">
+      <div class="hints-header">
+        <button class="hint-btn" id="hint-btn" onclick="toggleHints()">
+          💡 Hinweis aufdecken (<span id="hint-counter-span">4</span> verfügbar)
+        </button>
+        <span class="hints-remaining">Jeder Hinweis kostet 1 Punkt</span>
+      </div>
+      <div id="hints-panel" style="display:none">
+        <ul class="hints-list" id="hints-list"></ul>
+      </div>
+    </div>
+
+  </div><!-- .mail-window -->
 </div>
 
-<div id="reason-screen">
-  <div class="modal-box">
-    <h2>Warum ist diese E-Mail verdächtig?</h2>
-    <p>Bitte wählen Sie den zutreffendsten Grund aus:</p>
-    <select id="reason-select">
-      <option value="">-- Bitte wählen --</option>
-      <option value="domain">Falsche Absender-Domain (z.B. Tippfehler)</option>
-      <option value="link">Gefälschter Link (Ziel-URL weicht ab)</option>
-      <option value="druck">Künstlicher Zeitdruck / Drohung</option>
-      <option value="unbekannt">Unbekannter Absender fragt nach Daten</option>
-    </select>
-    <div class="modal-btn-wrap">
-      <button class="btn-cancel" onclick="cancelReason()">Abbrechen</button>
-      <button class="btn-confirm" onclick="submitReason()">Bestätigen</button>
-    </div>
+<!-- ═══════════════════════════════════════
+     PHISHING CAUGHT SCREEN
+═══════════════════════════════════════ -->
+<div class="screen" id="phishing-caught-screen">
+  <div class="interstitial">
+    <div class="big-icon">🚨</div>
+    <h2 style="color:#dc2626">Vorsicht – Phishing-Link!</h2>
+    <p>Sie haben auf einen <strong>verdächtigen Link</strong> geklickt. In einer echten Situation würden Sie jetzt auf eine gefälschte Website weitergeleitet, die Ihre Zugangsdaten stehlen will.</p>
+    <p><strong>Der Link hätte Sie hier hingeführt:</strong></p>
+    <div class="url-display" id="phishing-url-shown"></div>
+    <p style="font-size:.83rem;color:#dc2626;font-weight:700">⚠ Diese URL gehört nicht zum legitimen Anbieter!</p>
+    <p style="font-size:.82rem;color:#555">Immer: Absender-Domain prüfen, bevor Sie klicken. Im Zweifel die IT-Abteilung kontaktieren.</p>
+    <button class="btn btn-neutral" id="phishing-caught-back" style="margin-top:8px">← Zurück zur Mail</button>
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════
+     LEGIT LINK SCREEN
+═══════════════════════════════════════ -->
+<div class="screen" id="legit-link-screen">
+  <div class="interstitial interstitial-legit">
+    <div class="big-icon">✅</div>
+    <h2 style="color:#16a34a">Legitimer Link</h2>
+    <p>Dieser Link führt auf eine echte, vertrauenswürdige Seite des Absenders:</p>
+    <div class="url-display" id="legit-link-url"></div>
+    <p style="font-size:.83rem;color:#16a34a;font-weight:700">✔ Die Domain stimmt mit dem Absender überein.</p>
+    <p style="font-size:.82rem;color:#555">Gut gemacht! Trotzdem sollten Sie immer prüfen, ob die vollständige URL plausibel ist.</p>
+    <button class="btn btn-neutral" id="legit-link-back" style="margin-top:8px">← Zurück zur Mail</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     RESULTS SCREEN
+═══════════════════════════════════════ -->
 <div class="screen" id="results-screen">
-  <div class="res-card">
-    <h2>Simulation abgeschlossen! 🎉</h2>
-    <div class="res-score-wrap">
-      <div class="score-main"><span id="res-score"></span> <small>Punkte</small></div>
+  <div class="results-card">
+    <h2>🏁 Auswertung</h2>
+    <div class="score-hero">
+      <div class="score-big">
+        <span id="res-score">0</span>
+        <span style="font-size:1.6rem;color:#9ca3af"> / <span id="res-max">24</span></span>
+      </div>
       <div class="score-sub"><span id="res-pct">0%</span> Gesamtpunktzahl</div>
     </div>
     <div class="res-stats">
@@ -104,23 +158,26 @@
     <div class="res-det-title">Detailübersicht:</div>
     <div id="res-details"></div>
   </div>
+
+  <div class="tips-card">
+    <h3>📚 Die wichtigsten Erkennungsmerkmale</h3>
+    <ul>
+      <li><strong>Absender-Domain genau prüfen:</strong> micosoft, paypal1, postfinance-ch.net – minimale Abweichungen</li>
+      <li><strong>Über Links hovern</strong> bevor klicken: Ziel-URL muss zur Domain des Absenders passen</li>
+      <li><strong>Zeitdruck ist ein Warnsignal</strong> – seriöse Absender erzeugen keine künstliche Dringlichkeit</li>
+      <li><strong>Geheimhaltungsaufforderungen</strong> («nicht mit Kollegen besprechen») sind immer verdächtig</li>
+      <li><strong>Überweisungen nur telefonisch</strong> beim Auftraggeber verifizieren – nie nur per Mail</li>
+      <li><strong>Im Zweifel: IT-Support kontaktieren</strong> und nicht klicken</li>
+    </ul>
+  </div>
+
+  <div class="restart-wrap">
+    <button class="btn btn-restart" onclick="restartSim()">🔄 Nochmals versuchen</button>
+  </div>
 </div>
 
 <script src="js/scorm.js"></script>
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
-<div id="reason-screen" style="display: none; background: rgba(0,0,0,0.5); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; padding-top: 100px;">
-  <div style="background: #fff; max-width: 500px; margin: 0 auto; padding: 30px; border-radius: 12px;">
-    <h2>Warum ist diese E-Mail verdächtig?</h2>
-    <select id="reason-select" style="width: 100%; padding: 10px; margin-bottom: 20px;">
-      <option value="">-- Bitte wählen --</option>
-      <option value="domain">Falsche Absender-Domain</option>
-      <option value="link">Gefälschter Link</option>
-      <option value="druck">Künstlicher Zeitdruck</option>
-    </select>
-    <button onclick="document.getElementById('reason-screen').style.display='none'">Abbrechen</button>
-    <button onclick="submitReason()">Bestätigen</button>
-  </div>
-</div>
 </body>
 </html>
