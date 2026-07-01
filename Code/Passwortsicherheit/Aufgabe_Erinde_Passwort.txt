@@ -1,0 +1,12 @@
+Deine Aufgabe ist es, ein starkes und sicheres Passwort zu erfinden.
+
+Ein sicheres Passwort muss alle folgenden Kriterien erfüllen:
+• Mindestens 12 Zeichen lang
+• Mindestens ein Kleinbuchstabe
+• Mindestens ein Grossbuchstabe
+• Mindestens eine Zahl
+• Mindestens ein Sonderzeichen (z. B. ! oder ?)
+• Keine offensichtlichen Wörter/Namen (z. B. schule, admin, sommer...)
+
+Anweisung: 
+Ersetze im Antwortfeld unten die drei Punkte ... innerhalb der Anführungszeichen durch dein erfundenes Passwort und klicke auf "Prüfen".
