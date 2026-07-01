@@ -15,13 +15,14 @@ Diese Maturitätsarbeit befasst sich mit der Entwicklung eines praxisnahen Cyber
 ```
 Maturitätsarbeit/
 ├── Code/
-│   └── Phishing/          # Beispielcode und Simulationen zu Phishing-Angriffen
-├── Daten/                 # Erhobene Daten (z. B. Umfragen, Auswertungen)
-├── Dokumentation/         # Technische Dokumentation und Arbeitsjournal
-├── Dokumente/             # Offizielle Dokumente (Anmeldung, Vereinbarungen etc.)
-├── Literatur/             # Quellen, Fachartikel und Bücher
-├── Planung/
-└── Präsentation/          # Folien und Materialien für die Abschlusspräsentation
+│   └── Phishing/               # Quellcode und Simulationen zu Phishing-Angriffen (Moodle-Integration)
+|   └── Passwortsicherheit      # Interaktive CodeRunner-Aufgaben und Programmierfragen zu Passwörtern
+├── Daten/                      # Erhobene Daten (z. B. Umfragen, Auswertungen)
+├── Dokumentation/              # Technische Dokumentation und Arbeitsjournal
+├── Dokumente/                  # Offizielle Dokumente (Anmeldung, Vereinbarungen etc.)
+├── Literatur/                  # Quellen, Fachartikel und Bücher
+├── Planung/                    # Laufendes Arbeitsjournal mit Verknüpfungen zu den GitHub-Issues
+└── Präsentation/               # Folien und Materialien für die Abschlusspräsentation
 ```
 
 ## Status
