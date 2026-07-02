@@ -117,7 +117,7 @@ var EMAILS = [
     subject: "Ihre Lohnabrechnung Mai 2026 – jetzt im Mitarbeiterportal",
     date: "Fr, 29. Mai 2026  07:15",
     linkLabel: "Mitarbeiterportal öffnen",
-    linkUrl: "https://portal.kantonsschule-imlee.ch",
+    linkUrl: "https://portal.edu.stud.zh.ch",
     linkIsPhishing: false,
     threadSnippet: null,
     body: `
