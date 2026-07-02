@@ -16,7 +16,7 @@ var EMAILS = [
     senderDisplay: "Microsoft Konto-Team",
     senderReal: "account-security@micosoft-account.com",
     senderLegit: "account-security@microsoft.com",
-    to: "l.steiner@kantonsschule-imlee.ch",
+    to: "l.steiner@edu.stud.zh.ch",
     subject: "Sicherheitsbenachrichtigung: Anmeldeversuch von neuem Gerät",
     date: "Fr, 29. Mai 2026  08:47",
     linkLabel: "Aktivität überprüfen",
@@ -66,7 +66,7 @@ var EMAILS = [
     senderDisplay: "PostFinance E-Banking",
     senderReal: "ebanking@postfinance-ch.net",
     senderLegit: "ebanking@postfinance.ch",
-    to: "l.steiner@kantonsschule-imlee.ch",
+    to: "l.steiner@edu.stud.zh.ch",
     subject: "Ihre TAN-Liste läuft ab – jetzt erneuern",
     date: "Do, 28. Mai 2026  11:03",
     linkLabel: null,
@@ -111,9 +111,9 @@ var EMAILS = [
     difficulty: "schwer",
     action: "legit-link",
     senderDisplay: "HR Kantonsschule Im Lee",
-    senderReal: "hr@kantonsschule-imlee.ch",
-    senderLegit: "hr@kantonsschule-imlee.ch",
-    to: "l.steiner@kantonsschule-imlee.ch",
+    senderReal: "hr@edu.stud.zh.ch",
+    senderLegit: "hr@edu.stud.zh.ch",
+    to: "l.steiner@edu.stud.zh.ch",
     subject: "Ihre Lohnabrechnung Mai 2026 – jetzt im Mitarbeiterportal",
     date: "Fr, 29. Mai 2026  07:15",
     linkLabel: "Mitarbeiterportal öffnen",
@@ -132,15 +132,15 @@ var EMAILS = [
     <div style="text-align:center;margin:22px 0">
       <a href="#LEGIT_LINK" class="email-action-link" style="display:inline-block;background:#003399;color:#fff;text-decoration:none;padding:11px 28px;border-radius:3px;font-weight:600">Mitarbeiterportal öffnen</a>
     </div>
-    <p style="font-size:12px;color:#888">Direktlink: <span style="color:#003399">https://portal.kantonsschule-imlee.ch</span></p>
-    <p>Bei technischen Problemen wenden Sie sich an <a href="mailto:it-support@kantonsschule-imlee.ch" style="color:#003399">it-support@kantonsschule-imlee.ch</a> oder Tel. 052 235 12 00.</p>
+    <p style="font-size:12px;color:#888">Direktlink: <span style="color:#003399">https://portal.edu.stud.zh.ch</span></p>
+    <p>Bei technischen Problemen wenden Sie sich an <a href="mailto:it-support@edu.stud.zh.ch" style="color:#003399">it-support@edu.stud.zh.ch</a> oder Tel. 052 235 12 00.</p>
     <p style="margin-top:18px">Mit freundlichen Grüssen<br><strong>Sandra Meier</strong><br>Personalverwaltung</p>
   </td></tr>
   <tr><td style="padding:10px 0;text-align:center;font-size:11px;color:#aaa">Kantonsschule Im Lee · Kantonsschulstrasse 18 · 8400 Winterthur</td></tr>
 </table>`,
     clues: [
-      "Die Absender-Domain <strong>@kantonsschule-imlee.ch</strong> stimmt genau mit der eigenen Schul-Domain überein.",
-      "Der Link führt direkt auf <em>portal.kantonsschule-imlee.ch</em> – die eigene Schul-Subdomain, die explizit auch als Textlink angegeben wird.",
+      "Die Absender-Domain <strong>@edu.stud.zh.ch</strong> stimmt genau mit der eigenen Schul-Domain überein.",
+      "Der Link führt direkt auf <em>portal.edu.stud.zh.ch</em> – die eigene Schul-Subdomain, die explizit auch als Textlink angegeben wird.",
       "Kein Zeitdruck, keine Drohung, keine Aufforderung zur Dateneingabe in der Mail selbst.",
       "Der Inhalt ist konkret und erwartet (Lohnabrechnung kommt monatlich). Die Absenderin ist namentlich bekannt."
     ],
@@ -156,7 +156,7 @@ var EMAILS = [
     senderDisplay: "DHL Paketservice Schweiz",
     senderReal: "noreply@dhl-delivery-ch.com",
     senderLegit: "noreply@dhl.com",
-    to: "l.steiner@kantonsschule-imlee.ch",
+    to: "l.steiner@edu.stud.zh.ch",
     subject: "Ihr Paket konnte nicht zugestellt werden – Aktion erforderlich",
     date: "Mi, 27. Mai 2026  14:22",
     linkLabel: "Neue Lieferzeit wählen",
@@ -201,13 +201,13 @@ var EMAILS = [
     difficulty: "schwer",
     action: "legit-link",
     senderDisplay: "IT-Support KS Im Lee",
-    senderReal: "it-support@kantonsschule-imlee.ch",
-    senderLegit: "it-support@kantonsschule-imlee.ch",
-    to: "l.steiner@kantonsschule-imlee.ch",
+    senderReal: "it-support@edu.stud.zh.ch",
+    senderLegit: "it-support@edu.stud.zh.ch",
+    to: "l.steiner@edu.stud.zh.ch",
     subject: "Pflichtaktion: Passwort-Reset bis 30.05.2026",
     date: "Mo, 26. Mai 2026  09:00",
     linkLabel: "Passwort jetzt ändern",
-    linkUrl: "https://accounts.kantonsschule-imlee.ch/password-reset",
+    linkUrl: "https://accounts.edu.stud.zh.ch/password-reset",
     linkIsPhishing: false,
     threadSnippet: "Aufgrund der kantonalen IT-Sicherheitsrichtlinie (Zyklus 90 Tage) wird ein Reset benötigt.",
     body: `
@@ -232,8 +232,8 @@ var EMAILS = [
   </td></tr>
 </table>`,
     clues: [
-      "Absender-Domain <strong>@kantonsschule-imlee.ch</strong> ist die eigene Schul-Domain – intern und konsistent.",
-      "Der Link zeigt explizit die vollständige URL <em>accounts.kantonsschule-imlee.ch</em> als Klartext – seriöse IT-Abteilungen tun das bewusst, damit man die Domain prüfen kann.",
+      "Absender-Domain <strong>@edu.stud.zh.ch</strong> ist die eigene Schul-Domain – intern und konsistent.",
+      "Der Link zeigt explizit die vollständige URL <em>accounts.edu.stud.zh.ch</em> als Klartext – seriöse IT-Abteilungen tun das bewusst, damit man die Domain prüfen kann.",
       "Telefonnummer und Raumnummer (E04) sind konkret und verifizierbar – keine Phantomdaten.",
       "Kein Dateneingabe-Formular in der Mail selbst – Passwort wird nur auf dem Portal geändert."
     ],
@@ -247,9 +247,9 @@ var EMAILS = [
     difficulty: "schwer",
     action: "spam",
     senderDisplay: "Dr. Peter Schlatter (Rektor)",
-    senderReal: "p.schlatter@kantonsschule-imlee.net",
-    senderLegit: "p.schlatter@kantonsschule-imlee.ch",
-    to: "l.steiner@kantonsschule-imlee.ch",
+    senderReal: "p.schlatter@edu.stud.zh.ch",
+    senderLegit: "p.schlatter@edu.stud.zh.ch",
+    to: "l.steiner@edu.stud.zh.ch",
     subject: "Vertraulich – dringende Zahlung heute",
     date: "Fr, 29. Mai 2026  16:54",
     linkLabel: null,
@@ -272,7 +272,7 @@ var EMAILS = [
   <p style="font-size:11px;color:#aaa;margin-top:20px">Kantonsschule Im Lee · Kantonsschulstrasse 18 · 8400 Winterthur · 052 235 12 00</p>
 </div>`,
     clues: [
-      "Die Domain lautet <strong>kantonsschule-imlee.net</strong> statt <em>.ch</em> – minimaler Unterschied, maximale Wirkung. Der Angreifer hat eine fast identische Domain registriert.",
+      "Die Domain lautet <strong>edu.stud.zh.ch</strong> statt <em>.net</em> – minimaler Unterschied, maximale Wirkung. Der Angreifer hat eine fast identische Domain registriert.",
       "«Besprechen Sie dies bitte noch nicht mit Kollegen» – Isolierungstaktik. Phishing-Angriffe leben davon, dass das Opfer keine zweite Meinung einholt.",
       "«Heute bis 17:30 Uhr» – extremer Zeitdruck bei gleichzeitiger Unerreichbarkeit des Absenders ist das klassische CEO-Fraud-Muster.",
       "Überweisungsaufträge müssen immer telefonisch beim vermeintlichen Auftraggeber verifiziert werden – niemals nur auf Basis einer E-Mail."
@@ -289,7 +289,7 @@ var EMAILS = [
     senderDisplay: "Adobe Sign",
     senderReal: "echosign@adobesign-notifications.com",
     senderLegit: "echosign@adobesign.com",
-    to: "l.steiner@kantonsschule-imlee.ch",
+    to: "l.steiner@edu.stud.zh.ch",
     subject: "Dokument zur Unterzeichnung: Arbeitsvertrag_Nachtrag_2026.pdf",
     date: "Do, 28. Mai 2026  13:37",
     linkLabel: "Dokument überprüfen und unterzeichnen",
@@ -303,7 +303,7 @@ var EMAILS = [
   </td></tr>
   <tr><td style="padding:28px 24px;background:#fff;border:1px solid #e8e8e8;border-top:none">
     <p style="font-size:18px;font-weight:700;margin:0 0 6px">Dokument zur Unterzeichnung</p>
-    <p style="color:#747474;font-size:13px;margin:0 0 20px">gesendet von <strong>Sandra Meier</strong> &lt;s.meier@kantonsschule-imlee.ch&gt;</p>
+    <p style="color:#747474;font-size:13px;margin:0 0 20px">gesendet von <strong>Sandra Meier</strong> &lt;s.meier@edu.stud.zh.ch&gt;</p>
     <table style="background:#f4f4f4;border-radius:4px;padding:14px 16px;width:100%;font-size:13px;margin-bottom:20px" cellpadding="3" cellspacing="0">
       <tr><td style="color:#747474">Dokument</td><td><strong>Arbeitsvertrag_Nachtrag_2026.pdf</strong></td></tr>
       <tr><td style="color:#747474">Ablaufdatum</td><td><strong style="color:#c00">30.05.2026, 23:59 Uhr</strong></td></tr>
@@ -338,7 +338,7 @@ var EMAILS = [
     senderDisplay: "Swisscom Rechnung",
     senderReal: "rechnung@swisscom.com",
     senderLegit: "rechnung@swisscom.com",
-    to: "l.steiner@kantonsschule-imlee.ch",
+    to: "l.steiner@edu.stud.zh.ch",
     subject: "Ihre Swisscom Rechnung Mai 2026 – CHF 89.90",
     date: "Di, 27. Mai 2026  06:00",
     linkLabel: "Rechnung anzeigen",

@@ -119,6 +119,11 @@ function wireBodyLinks(){
   var e = currentEmail();
   var links = $('email-body-area').querySelectorAll('a.email-action-link');
   links.forEach(function(a){
+    // NEU: Zeigt die Ziel-URL beim Darüberfahren (Hover) an
+    if(e.linkUrl) {
+      a.title = "Ziel-URL: " + e.linkUrl;
+    }
+
     a.removeAttribute('href');
     a.style.cursor = 'pointer';
     a.addEventListener('click', function(ev){
@@ -151,23 +156,16 @@ function handleLinkClick(e){
 
 // ── Action bar ─────────────────────────────────────────────────────────────
 function renderActionBar(){
-  var e = currentEmail();
-  var bar = $('action-bar');
-  bar.innerHTML = '';
-
-  // Always: spam button
-  var spamBtn = document.createElement('button');
-  spamBtn.className = 'btn btn-spam';
-  spamBtn.innerHTML = '🚫 Als Spam markieren';
-  spamBtn.onclick = function(){ submitAnswer('spam'); };
-  bar.appendChild(spamBtn);
-
-  // Always: legit button
-  var legitBtn = document.createElement('button');
-  legitBtn.className = 'btn btn-legit';
-  legitBtn.innerHTML = '✅ Seriöse Mail – ignorieren';
-  legitBtn.onclick = function(){ submitAnswer('legit'); };
-  bar.appendChild(legitBtn);
+  var bar = document.getElementById('action-bar');
+  if(S.phase === 'reading'){
+    // Aktionstasten anzeigen. Korrekter Funktionsaufruf: submitAnswer()
+    bar.innerHTML = 
+      '<button class="btn btn-legit" onclick="submitAnswer(\'legit\'); renderActionBar();">✅ Legitim (Keine Gefahr)</button>'+
+      '<button class="btn btn-phish" onclick="askForReason()">🚨 Verdächtig / Phishing</button>'; 
+  } else {
+    // Leiste leer lassen, da submitAnswer() den originalen "Nächste Mail"-Button einblendet
+    bar.innerHTML = ''; 
+  }
 }
 
 // ── Answer submission ──────────────────────────────────────────────────────
@@ -332,3 +330,23 @@ window.addEventListener('DOMContentLoaded', function(){
   showScreen('start-screen');
   updateProgress();
 });
+
+function askForReason() {
+  document.getElementById('reason-screen').style.display = 'block';
+  document.getElementById('reason-select').value = ""; // Dropdown zurücksetzen
+}
+
+function submitReason() {
+  var reason = document.getElementById('reason-select').value;
+  if (!reason) {
+    alert("Bitte wählen Sie einen Grund aus.");
+    return;
+  }
+  document.getElementById('reason-screen').style.display = 'none';
+  
+  // Die Original-Bewertung aufrufen ('spam' ist das Schlüsselwort für Phishing im System)
+  submitAnswer('spam');
+  
+  // Leiste aktualisieren, um die Buttons auszublenden
+  renderActionBar(); 
+}
